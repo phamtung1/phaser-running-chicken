@@ -16,10 +16,11 @@
 	var _shoutSound;
 	var _timer;
 	var _flyingBird;
+	var _background;
 
 	RunningChickenGame.GameState = {
 		create: function () {
-			game.add.image(0, 0, 'background')
+			_background = game.add.tileSprite(0, 0, 900, 600, 'background');
 			_jumpSound = game.add.audio('jump')
 			_shoutSound = game.add.audio('shout')
 			_score = 0;
@@ -72,6 +73,7 @@
 				return;
 			}
 			_player.body.velocity.x = _player.body.velocity.y === 0 ? RUN_SPEED : JUMP_SPEED
+			_background.tilePosition.x -= 2;
 			// check to kill and add new ledge
 			_ledgeGroup.forEach(function (item) {
 				if (item.x < -item.width) {
